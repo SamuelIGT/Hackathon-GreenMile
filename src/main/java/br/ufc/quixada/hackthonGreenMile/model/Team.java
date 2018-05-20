@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -17,6 +18,8 @@ public class Team {
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	@NotNull
 	private String name;
 	
 	//@OneToMany(mappedBy = "team", targetEntity = Member.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)

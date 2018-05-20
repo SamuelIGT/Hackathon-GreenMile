@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -20,11 +21,22 @@ public class Hackathon {
 	@GeneratedValue
 	private long id;
 	
+	@NotNull
 	private String name;
+	
+	@NotNull
 	private String description;
+	
+	@NotNull
 	private String place;
+	
+	@NotNull
 	private Date date;
+	
+	@NotNull
 	private int numberOfMembersByTeam;
+	
+	@NotNull
 	private int numberOfTeams;
 	
 	@ManyToMany
