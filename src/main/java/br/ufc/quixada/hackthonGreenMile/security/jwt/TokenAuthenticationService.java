@@ -22,14 +22,14 @@ public class TokenAuthenticationService {
 	static final String SECRET = "MySecret";
 	static final String TOKEN_PREFIX = "Bearer";
 	static final String HEADER_STRING = "Authorization";
-	static Key key = MacProvider.generateKey();
+	//static Key key = MacProvider.generateKey();
 	
 	public static void addAuthentication(HttpServletResponse response, String username) {
 		System.err.println("addAuthentication");
 		String JWT = Jwts.builder()
 					.setSubject(username)
 					.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-					.signWith(SignatureAlgorithm.HS512, key)
+					.signWith(SignatureAlgorithm.HS512, SECRET)
 					.compact();
 		
 		response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
@@ -42,7 +42,7 @@ public class TokenAuthenticationService {
 		if(token != null) {
 			
 			String user = Jwts.parser()
-							.setSigningKey(key)
+							.setSigningKey(SECRET)
 							.parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
 							.getBody()
 							.getSubject();
