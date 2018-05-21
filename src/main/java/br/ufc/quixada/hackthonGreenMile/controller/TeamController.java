@@ -43,25 +43,17 @@ public class TeamController {
 		
 		return this.service.get(id);
 	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> delete(@PathVariable Long id){
-		
-		return this.service.delete(id);
+	
+	@DeleteMapping
+	public ResponseEntity<Boolean> delete(@RequestBody Team team){
+		return this.service.delete(team);
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<Team>> getAll(){
 		
 		return this.service.getAll();
-	}
-	
-	@PostMapping("/subscribe")
-	public ResponseEntity<Team> get(@RequestBody Team team){
-		
-		return this.service.subscribe(team);
-	}
-	
+	}	
 	
 
 }

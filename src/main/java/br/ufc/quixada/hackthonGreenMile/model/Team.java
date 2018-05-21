@@ -32,14 +32,14 @@ public class Team {
 	//@OneToMany(mappedBy = "team", targetEntity = Member.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	//@JsonBackReference
 	
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "team_has_member", joinColumns = {@JoinColumn(name = "team_id")}, inverseJoinColumns = { @JoinColumn(name = "member_id")})
 	private List<Member> members;
 	
 	//@Getter(onMethod=@__(@JsonIgnore))
 	//@JoinTable(name = "hackathon_has_team", joinColumns = {@JoinColumn(name = "hackathon_id")}, inverseJoinColumns = { @JoinColumn(name = "team_id")})
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Hackathon hackathon;
 	
 	@NotNull

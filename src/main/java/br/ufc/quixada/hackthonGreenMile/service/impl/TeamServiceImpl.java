@@ -1,9 +1,6 @@
 package br.ufc.quixada.hackthonGreenMile.service.impl;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.ufc.quixada.hackthonGreenMile.model.Hackathon;
+import br.ufc.quixada.hackthonGreenMile.model.Member;
 import br.ufc.quixada.hackthonGreenMile.model.Team;
 import br.ufc.quixada.hackthonGreenMile.repository.HackathonRepository;
+import br.ufc.quixada.hackthonGreenMile.repository.MemberRepository;
 import br.ufc.quixada.hackthonGreenMile.repository.TeamRepository;
 import br.ufc.quixada.hackthonGreenMile.service.TeamService;
 
@@ -25,6 +24,9 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Autowired
 	private HackathonRepository hackathonRepository;
+	
+	@Autowired
+	private MemberRepository memberRepository;
 
 	@Override
 	public ResponseEntity<Team> create(Team team) {
@@ -34,6 +36,14 @@ public class TeamServiceImpl implements TeamService {
 		
 		//If it is open for subscription
 		if(hackathon.isOpenForSubscription()) {
+			for(Member member: team.getMembers()) {
+				if(member.getTeams() == null) {
+					member.setTeams(new ArrayList<>());
+				}
+				member.getTeams().add(team);
+				memberRepository.save(member);
+			}
+			
 			hackathon.getTeams().add(team);
 			return new ResponseEntity<Team>(this.repository.save(team), HttpStatus.OK);
 		}else {
@@ -42,8 +52,11 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	@Override
-	public ResponseEntity<Boolean> delete(Long id) {
-		this.repository.deleteById(id);
+	public ResponseEntity<Boolean> delete(Team team) {
+		team.setMembers(null); //removes everyone from this team
+		repository.save(team);
+		
+		this.repository.deleteById(team.getId());
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}	
 
@@ -60,14 +73,6 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public ResponseEntity<List<Team>> getAll() {
 		return new ResponseEntity<List<Team>>(this.repository.findAll(), HttpStatus.OK);
-	}
-
-	@Override
-	public ResponseEntity<Team> subscribe(Team team) {
-		Hackathon hackathon = hackathonRepository.findById(team.getHackathon().getId()).get();
-		
-		hackathon.getTeams().add(team);
-		return null;
 	}
 
 }

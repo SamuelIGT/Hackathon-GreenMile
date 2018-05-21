@@ -35,6 +35,7 @@ public class Member {
 	private String picture;
 	
 	@ManyToMany(mappedBy="members", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Team> teams;
 	
 	private Member() {}
