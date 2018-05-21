@@ -7,6 +7,5 @@ import br.ufc.quixada.hackthonGreenMile.model.Hackathon;
 
 @Repository
 public interface HackathonRepository extends JpaRepository<Hackathon, Long> {
-
 	 void deleteById(Long id);
 }

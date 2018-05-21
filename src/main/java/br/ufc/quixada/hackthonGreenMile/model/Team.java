@@ -1,5 +1,6 @@
 package br.ufc.quixada.hackthonGreenMile.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,7 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -31,8 +37,15 @@ public class Team {
 	private List<Member> members;
 	
 	//@Getter(onMethod=@__(@JsonIgnore))
-	@ManyToMany(mappedBy="teams", cascade = CascadeType.ALL)
-	private List<Hackathon> hackathons;
+	//@JoinTable(name = "hackathon_has_team", joinColumns = {@JoinColumn(name = "hackathon_id")}, inverseJoinColumns = { @JoinColumn(name = "team_id")})
+	
+	@ManyToOne
+	private Hackathon hackathon;
+	
+	@NotNull
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private Date subscriptionDate;
 	
 	private Team() {
 	}

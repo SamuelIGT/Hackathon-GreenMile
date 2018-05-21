@@ -55,5 +55,13 @@ public class TeamController {
 		
 		return this.service.getAll();
 	}
+	
+	@PostMapping("/subscribe")
+	public ResponseEntity<Team> get(@RequestBody Team team){
+		
+		return this.service.subscribe(team);
+	}
+	
+	
 
 }

@@ -8,8 +8,7 @@ public class HomeController {
 	
 	@RequestMapping
 	public String index() {
-		System.out.println("home controller");
-		return "Greetings from Spring Boot!";
+		return "index";
 	}
 	
 }

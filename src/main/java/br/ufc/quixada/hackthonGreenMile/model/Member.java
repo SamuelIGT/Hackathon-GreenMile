@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -34,7 +34,6 @@ public class Member {
 	
 	private String picture;
 	
-	//@JsonManagedReference
 	@ManyToMany(mappedBy="members", cascade = CascadeType.ALL)
 	private List<Team> teams;
 	

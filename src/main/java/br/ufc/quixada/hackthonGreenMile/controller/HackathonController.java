@@ -1,10 +1,12 @@
 package br.ufc.quixada.hackthonGreenMile.controller;
 import static br.ufc.quixada.hackthonGreenMile.util.Consts.API;
 import static br.ufc.quixada.hackthonGreenMile.util.Consts.HACKATHON;
+import static br.ufc.quixada.hackthonGreenMile.util.Consts.MAX_PAGE_SIZE;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +56,24 @@ public class HackathonController {
 	public ResponseEntity<List<Hackathon>> getAll(){
 		
 		return this.service.getAll();
+	}
+	
+	@GetMapping("/{id}/list-teams/{page}")
+	public ResponseEntity<Page<Team>> listTeams(@PathVariable Long id, @PathVariable int page){
+		
+		return this.service.getAllTeams(id, page, MAX_PAGE_SIZE);
+	}
+	
+	@GetMapping("/{id}/list-teams-ordered-by-name/{page}")
+	public ResponseEntity<Page<Team>> listTeamsOrderedByName(@PathVariable Long id, @PathVariable int page){
+		
+		return this.service.getAllTeamsOrderedByName(id, page, MAX_PAGE_SIZE);
+	}
+	
+	@GetMapping("/{id}/list-teams-ordered-by-date/{page}")
+	public ResponseEntity<Page<Team>> listTeamsOrderedByDate(@PathVariable Long id, @PathVariable int page){
+		
+		return this.service.getAllTeamsOrderedByDate(id, page, MAX_PAGE_SIZE);
 	}
 	
 /*	@DeleteMapping("/unsubscribe")

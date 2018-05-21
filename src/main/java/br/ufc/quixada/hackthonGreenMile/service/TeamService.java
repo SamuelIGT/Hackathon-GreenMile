@@ -12,5 +12,5 @@ public interface TeamService {
 	public ResponseEntity<Team> get (Long id);
 	public ResponseEntity<Team> update (Team team);
 	public ResponseEntity<List<Team>> getAll ();
-	
+	public ResponseEntity<Team> subscribe (Team team);
 }

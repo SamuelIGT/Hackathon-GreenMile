@@ -11,6 +11,7 @@ public class Consts {
 	public static final String HACKATHON = "/hackathon";
 	public static final String TEAM = "/team";
 	public static final String MEMBER = "/member";
+	public static final int MAX_PAGE_SIZE = 10; 
 	
 	//REQUEST METHODS
 	/*public static final String GET = "/get";*/
