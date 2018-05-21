@@ -1,6 +1,5 @@
 package br.ufc.quixada.hackthonGreenMile.security.jwt;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,7 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
 
 public class TokenAuthenticationService {
 

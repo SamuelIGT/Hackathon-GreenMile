@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufc.quixada.hackthonGreenMile.model.Hackathon;
+import br.ufc.quixada.hackthonGreenMile.model.Team;
 import br.ufc.quixada.hackthonGreenMile.service.HackathonService;
 
 @RestController
@@ -44,7 +45,7 @@ public class HackathonController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> create(@PathVariable Long id){
+	public ResponseEntity<Boolean> delete(@PathVariable Long id){
 		
 		return this.service.delete(id);
 	}
@@ -54,4 +55,10 @@ public class HackathonController {
 		
 		return this.service.getAll();
 	}
+	
+/*	@DeleteMapping("/unsubscribe")
+	public ResponseEntity<Boolean> unsubscribe(@RequestBody Team team){
+		
+		return this.service.unsubscribe(team);
+	}*/
 }

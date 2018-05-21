@@ -2,11 +2,14 @@ package br.ufc.quixada.hackthonGreenMile.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -31,7 +34,8 @@ public class Member {
 	
 	private String picture;
 	
-	@ManyToMany(mappedBy="members")
+	//@JsonManagedReference
+	@ManyToMany(mappedBy="members", cascade = CascadeType.ALL)
 	private List<Team> teams;
 	
 	private Member() {}
@@ -43,7 +47,5 @@ public class Member {
 		this.shirtSize = shirtSize;
 		this.picture = photo;
 	}
-	
-	
 
 }

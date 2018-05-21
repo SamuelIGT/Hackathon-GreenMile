@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,29 +50,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()//Disable CSRF protection
 			.authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/").permitAll()
+				//.antMatchers("/h2/**/**").permitAll() //Allows all requests to the H2 database console url("/console/*")
+				//.antMatchers(HttpMethod.GET, "/").permitAll()
 				.antMatchers(HttpMethod.POST, "/login").permitAll()
 				.anyRequest().authenticated()
-				.and().httpBasic().and()
+				.and()
 				.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
 				.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-				/*.anyRequest()
-					.authenticated()*/
-			/*.and()
-			.formLogin();*/
 				
+		http.headers().frameOptions().sameOrigin().cacheControl(); //required to set for h2 else h2 console will be blank
 		
-		/*http.authorizeRequests()
-			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.antMatchers(HttpMethod.GET, "/").permitAll()
-			.anyRequest().authenticated();*/
-				
-		
-		/*-----------Allow h2 console---------*/
-		/*http
-		.authorizeRequests().antMatchers("/h2/**").permitAll(); //Allow all requests to the H2 database console url("/console/*")
-		http.headers().frameOptions().disable(); //Disable X-Frame-Options*/
-		/*----------------END---------------*/
 	}
 	
 	@Override
@@ -86,6 +74,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		auth.userDetailsService(accountDetailsService).passwordEncoder(passwordEncoder());
 		
+	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring()
+		.antMatchers("/")
+		.antMatchers("/h2/**/**");
 	}
 	
 /*	@Bean

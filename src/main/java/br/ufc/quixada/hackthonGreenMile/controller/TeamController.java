@@ -45,7 +45,7 @@ public class TeamController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> create(@PathVariable Long id){
+	public ResponseEntity<Boolean> delete(@PathVariable Long id){
 		
 		return this.service.delete(id);
 	}

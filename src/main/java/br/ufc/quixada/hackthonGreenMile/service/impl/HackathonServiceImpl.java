@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.ufc.quixada.hackthonGreenMile.model.Hackathon;
+import br.ufc.quixada.hackthonGreenMile.model.Team;
 import br.ufc.quixada.hackthonGreenMile.repository.HackathonRepository;
 import br.ufc.quixada.hackthonGreenMile.service.HackathonService;
 
@@ -42,5 +43,10 @@ public class HackathonServiceImpl implements HackathonService {
 	public ResponseEntity<List<Hackathon>> getAll() {
 		return new ResponseEntity<List<Hackathon>>(this.repository.findAll(), HttpStatus.OK);
 	}
+
+	/*@Override
+	public ResponseEntity<Boolean> unsubscribe(Team team) {
+		return null;
+	}*/
 
 }
