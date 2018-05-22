@@ -72,10 +72,4 @@ public class HackathonServiceImpl implements HackathonService {
 		
         return new ResponseEntity<Page<Team>>(teams, HttpStatus.OK);
 	}
-
-	/*@Override
-	public ResponseEntity<Boolean> unsubscribe(Team team) {
-		return null;
-	}*/
-
 }

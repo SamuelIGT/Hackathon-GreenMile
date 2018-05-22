@@ -25,6 +25,4 @@ public interface HackathonService {
 	public ResponseEntity<Page<Team>> getAllTeamsOrderedByName(Long id, int page, int maxPageSize);
 
 	public ResponseEntity<Page<Team>> getAllTeamsOrderedByDate(Long id, int page, int maxPageSize);
-	
-//	public ResponseEntity<Boolean> unsubscribe (Team team);
 }

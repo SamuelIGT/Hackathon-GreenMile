@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloWorldSpringBoot1Application {
+public class HackathonGreenMileApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloWorldSpringBoot1Application.class, args);
+		SpringApplication.run(HackathonGreenMileApplication.class, args);
 	}
 }

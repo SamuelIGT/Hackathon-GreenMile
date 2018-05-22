@@ -75,10 +75,4 @@ public class HackathonController {
 		
 		return this.service.getAllTeamsOrderedByDate(id, page, MAX_PAGE_SIZE);
 	}
-	
-/*	@DeleteMapping("/unsubscribe")
-	public ResponseEntity<Boolean> unsubscribe(@RequestBody Team team){
-		
-		return this.service.unsubscribe(team);
-	}*/
 }

@@ -11,10 +11,10 @@ public class Consts {
 	public static final String HACKATHON = "/hackathon";
 	public static final String TEAM = "/team";
 	public static final String MEMBER = "/member";
-	public static final int MAX_PAGE_SIZE = 10; 
+	public static final String LOGIN = "/login";
 	
-	//REQUEST METHODS
-	/*public static final String GET = "/get";*/
+	public static final String CREDENTIALS_DEFAULT = "{\"username\":\"admin\", \"password\": \"password\"}";
+	public static final int MAX_PAGE_SIZE = 10; 
 	
 	
 	private Consts(){

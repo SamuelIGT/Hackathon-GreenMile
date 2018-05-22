@@ -48,10 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()//Disable CSRF protection
+		http.csrf().disable()
 			.authorizeRequests()
-				//.antMatchers("/h2/**/**").permitAll() //Allows all requests to the H2 database console url("/console/*")
-				//.antMatchers(HttpMethod.GET, "/").permitAll()
 				.antMatchers(HttpMethod.POST, "/login").permitAll()
 				.anyRequest().authenticated()
 				.and()
@@ -82,20 +80,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.antMatchers("/")
 		.antMatchers("/h2/**/**");
 	}
-	
-/*	@Bean
-	@Override
-	public UserDetailsService userDetailsService() {
-		UserDetails user =
-				User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
-				.roles("USER")
-				.build();
-		
-		return new InMemoryUserDetailsManager(user);
-	}*/
-	
 	
 
 }

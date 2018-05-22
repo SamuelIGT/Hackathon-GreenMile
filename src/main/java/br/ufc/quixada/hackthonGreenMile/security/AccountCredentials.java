@@ -26,21 +26,15 @@ public class AccountCredentials implements UserDetails{
 	@NotNull
 	private String password;
 	
-	
 	public AccountCredentials(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 	
-	
-	
 	public AccountCredentials() {}
-
-
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return new ArrayList<>();
 	}
 	@Override
@@ -49,28 +43,23 @@ public class AccountCredentials implements UserDetails{
 	}
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return username;
 	}
 	
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

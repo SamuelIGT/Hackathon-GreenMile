@@ -34,8 +34,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 		AccountCredentials credentials = new ObjectMapper()
 				.readValue(request.getInputStream(), AccountCredentials.class);
 		
-		System.err.println("Tentativa " + request.getInputStream() + credentials.getUsername());
-		
 		return getAuthenticationManager()
 				.authenticate(
 						new UsernamePasswordAuthenticationToken(
@@ -47,7 +45,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		System.err.println("SUCESOOOOOOO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		TokenAuthenticationService.addAuthentication(response, authResult.getName());
 	}
 

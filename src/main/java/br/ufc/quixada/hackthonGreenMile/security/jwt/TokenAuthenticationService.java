@@ -20,10 +20,8 @@ public class TokenAuthenticationService {
 	static final String SECRET = "MySecret";
 	static final String TOKEN_PREFIX = "Bearer";
 	static final String HEADER_STRING = "Authorization";
-	//static Key key = MacProvider.generateKey();
 	
 	public static void addAuthentication(HttpServletResponse response, String username) {
-		System.err.println("addAuthentication");
 		String JWT = Jwts.builder()
 					.setSubject(username)
 					.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
@@ -46,12 +44,9 @@ public class TokenAuthenticationService {
 							.getSubject();
 			
 			if(user != null) {
-				System.err.println("getAuthentication: user not null");
 				return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<GrantedAuthority>());
 			}
-			System.err.println("getAuthentication: user null");
 		}
-		System.err.println("getAuthentication: token null");
 		
 		return null;
 	}
