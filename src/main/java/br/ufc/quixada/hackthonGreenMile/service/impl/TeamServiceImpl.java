@@ -34,15 +34,21 @@ public class TeamServiceImpl implements TeamService {
 		
 		Hackathon hackathon = hackathonRepository.findById(team.getHackathon().getId()).get();
 		
-		//If it is open for subscription
-		if(hackathon.isOpenForSubscription()) {
+
+		if(hackathon.isOpenForSubscription()) {		//If it is open for subscription
 			for(Member member: team.getMembers()) {
 				if(member.getTeams() == null) {
 					member.setTeams(new ArrayList<>());
 				}
+				//verify if the member already belongs to this hackathon and if the team name already exist
+				if(hackathon.alreadyExists(member.getId(), team.getName())) {
+					return new ResponseEntity<Team>(HttpStatus.BAD_REQUEST);
+				}
+				
 				member.getTeams().add(team);
 				memberRepository.save(member);
 			}
+			
 			
 			hackathon.getTeams().add(team);
 			return new ResponseEntity<Team>(this.repository.save(team), HttpStatus.OK);

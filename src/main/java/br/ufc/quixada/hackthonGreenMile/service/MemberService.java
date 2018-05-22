@@ -12,4 +12,5 @@ public interface MemberService {
 	public ResponseEntity<Member> get (Long id);
 	public ResponseEntity<Member> update (Member member);
 	public ResponseEntity<List<Member>> getAll ();
+	public ResponseEntity<Boolean> jointTeam(Long teamId, Member member);
 }

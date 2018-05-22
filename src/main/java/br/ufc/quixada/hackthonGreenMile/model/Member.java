@@ -32,7 +32,7 @@ public class Member {
 	@NotNull
 	private String shirtSize;
 	
-	private String picture;
+	private byte[] picture;
 	
 	@ManyToMany(mappedBy="members", cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -40,7 +40,7 @@ public class Member {
 	
 	private Member() {}
 
-	public Member(String name, String email, String phone, String shirtSize, String photo) {
+	public Member(String name, String email, String phone, String shirtSize, byte[] photo) {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;

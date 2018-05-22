@@ -55,5 +55,11 @@ public class MemberController {
 		
 		return this.service.getAll();
 	}
+	
+	@PostMapping("/join-team/{teamId}")
+	public ResponseEntity<Boolean> joinTeam(@PathVariable Long teamId, @RequestBody Member member){
+		
+		return this.service.jointTeam(teamId, member);
+	}
 
 }

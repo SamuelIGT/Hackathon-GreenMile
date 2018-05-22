@@ -1,5 +1,6 @@
 package br.ufc.quixada.hackthonGreenMile.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +53,38 @@ public class Hackathon {
 	private List<Team> teams;
 	
 	private Hackathon() {}
+	
+	
+	
+	public boolean alreadyExists(Long memberId, String teamName) {
+		for(Team team: this.teams) {
+			//verify if the members already exist
+			for(Member member: team.getMembers()) {
+				if(member.getId() == memberId) {
+					return true;
+				}
+			}
+			//------------------
+			//Verify if already exist a team with the same name
+			if(teamName.equals(team.getName())){
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	public Hackathon(@NotNull String name, @NotNull String description, @NotNull String place, @NotNull Date date,
+			@NotNull int numberOfMembersByTeam, @NotNull int numberOfTeams, @NotNull boolean isOpenForSubscription) {
+		this.name = name;
+		this.description = description;
+		this.place = place;
+		this.date = date;
+		this.numberOfMembersByTeam = numberOfMembersByTeam;
+		this.numberOfTeams = numberOfTeams;
+		this.isOpenForSubscription = isOpenForSubscription;
+	}
+	
 	
 
 }
